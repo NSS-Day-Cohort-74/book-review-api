@@ -1,0 +1,33 @@
+Table Book {
+id int [pk]
+title varchar [not null]
+author varchar [not null]
+isbn varchar [unique]
+publication_date datetime
+user_id int [ref: > User.id, not null]
+}
+
+Table User {
+id int [pk]
+username varchar [not null, unique]
+email varchar [not null, unique]
+}
+
+Table Review {
+id int [pk]
+book_id int [ref: > Book.id, not null]
+user_id int [ref: > User.id, not null]
+rating int [not null]
+review_text varchar
+}
+
+Table Category {
+id int [pk]
+category_name varchar [not null]
+}
+
+Table BookCategory {
+id int [pk]
+book_id int [ref: > Book.id, not null]
+category_id int [ref: > Category.id, not null]
+}
